@@ -13,7 +13,7 @@ interface Orphanage{
     id: number;
     latitude: number;
     longitude: number;
-    name: number;
+    name: string;
 }
 
 function OrphanagesMap(){
