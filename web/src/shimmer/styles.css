@@ -1,0 +1,20 @@
+.map-shimmer{
+    width: 100%;
+    height: 280px;
+    border-radius: 20px;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background: #929292;
+    }
+
+    50% {
+        background: #cecece;
+    }
+
+    100% {
+        background: #929292;
+    }
+}
