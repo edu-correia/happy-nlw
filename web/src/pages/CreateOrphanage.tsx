@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import {LeafletMouseEvent} from 'leaflet';
 import api from "../services/api";
@@ -39,14 +39,16 @@ export default function CreateOrphanage() {
 
     const selectedImages = Array.from(e.target.files);
 
-    setImages(selectedImages);
+    setImages([...images, ...selectedImages]);
+  }
 
-    const selectedImagesPreview = selectedImages.map(image => {
+  useEffect(() => {
+    const selectedImagesPreview = images.map(image => {
       return URL.createObjectURL(image);
     })
 
     setPreviewImages(selectedImagesPreview);
-  }
+  }, [images]);
 
   async function handleSubmit(e: FormEvent){
     e.preventDefault();
@@ -101,7 +103,6 @@ export default function CreateOrphanage() {
               )
               }
 
-              {/**/}
             </Map>
 
             <div className="input-block">
@@ -120,7 +121,7 @@ export default function CreateOrphanage() {
               <div className="images-container">
                 {previewImages.map(image => {
                     return (
-                      <img key={image} src={image} alt={name}/>
+                        <img key={image} src={image} alt={name}/>
                     )
                 })}
 
